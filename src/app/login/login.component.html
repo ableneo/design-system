@@ -1,0 +1,7 @@
+<ableneo-card header="Login">
+  <ableneo-form-layout [heading]="undefined">
+    <ableneo-form-element label="Email" placeholder="john.doe@gmail.com" value="" #user></ableneo-form-element>
+    <ableneo-form-element label="Password" inputType="password" placeholder="********" value="" #pw></ableneo-form-element>
+  </ableneo-form-layout>
+  <ableneo-button label="Submit" (buttonClick)="onSubmitButtonClick()"></ableneo-button>
+</ableneo-card>

@@ -1,0 +1,59 @@
+@mixin faces-and-icons() {
+  @font-face {
+    font-family: 'Ableneo';
+    font-style: normal;
+    font-weight: 200;
+    src: local('Ableneo'), local('Ableneo-UltraLight'), url('../assets/fonts/Ableneo-UltraLight.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Ableneo';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Ableneo'), local('Ableneo-Light'), url('../assets/fonts/Ableneo-Light.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Ableneo';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ableneo'), local('Ableneo-Thin'), url('../assets/fonts/Ableneo-Thin.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Ableneo';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Ableneo'), local('Ableneo-Regular'), url('../assets/fonts/Ableneo-Regular.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Ableneo';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Ableneo'), local('Ableneo-Medium'), url('../assets/fonts/Ableneo-Medium.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Ableneo';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Ableneo'), local('Ableneo-SemiBold'), url('../assets/fonts/Ableneo-SemiBold.otf') format('otf');
+  }
+
+  @font-face {
+    font-family: 'Ableneo';
+    font-style: normal;
+    font-weight: 800;
+    src: local('Ableneo'), local('Ableneo-Bold'), url('../assets/fonts/Ableneo-Bold.otf') format('otf');
+  }
+
+  body {
+    font-family: 'Roboto', 'Noto Sans', 'Noto Sans CJK JP', 'Noto Sans CJK CN', 'Noto Sans CJK KO', 'Helvetica Neue', sans-serif;
+
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+}

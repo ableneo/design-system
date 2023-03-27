@@ -1,0 +1,7 @@
+@use './styles/fonts';
+
+@include fonts.faces-and-icons();
+
+* {
+  box-sizing: border-box;
+}

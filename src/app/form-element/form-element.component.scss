@@ -1,0 +1,21 @@
+@use '../../styles/colors';
+@use 'src/styles/typography';
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    @include typography.body-typo();
+
+    cursor: pointer;
+    padding-bottom: 10px;
+  }
+
+  &:hover,
+  &:focus {
+    label {
+      color: colors.$text-hover;
+    }
+  }
+}

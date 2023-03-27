@@ -1,0 +1,29 @@
+@use '../../styles/colors';
+@use '../../styles/effects';
+
+:host {
+  display: block;
+}
+
+input {
+  width: 320px;
+  height: 40px;
+  border: 1px solid colors.$turquoise;
+  border-radius: 10px;
+  background: white;
+  box-sizing: border-box;
+  padding: 12px;
+
+  &:hover {
+    @include effects.hover-shadow();
+  }
+
+  &:focus {
+    @include effects.hover-shadow();
+    border: 1px solid colors.$text-hover;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}

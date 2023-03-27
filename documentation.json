@@ -1,0 +1,2253 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "Chainable",
+            "id": "interface-Chainable-9377f527ba7ac7be80bb7032b52923458edd66a40b3ecac58a8566e80f3028bab0bda1678b6dad956e7d4bef545d0ca4a7fee7ea6e5220625bb0baa831076c51",
+            "file": "cypress/support/component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import './commands'\n\n// Alternatively you can use CommonJS syntax:\n// require('./commands')\n\nimport { mount } from 'cypress/angular'\n\n// Augment the Cypress namespace to include type definitions for\n// your custom command.\n// Alternatively, can be defined in cypress/support/component.d.ts\n// with a <reference path=\"./component\" /> at the top of your spec.\ndeclare global {\n  namespace Cypress {\n    interface Chainable {\n      mount: typeof mount\n    }\n  }\n}\n\nCypress.Commands.add('mount', mount)\n\n// Example use:\n// cy.mount(MyComponent)\n",
+            "properties": [
+                {
+                    "name": "mount",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "Chainable",
+            "id": "interface-Chainable-190c8d26830be82c08d5cd5aa7f30f0453824a564bb9d76b66cd3f28a24bd540b16fabd3bb4d4a2a6f32e68fc8fe7ad19fda1b46fe614b76481ce81c9c5fbbf2-1",
+            "file": "cypress/support/commands.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { buildArgsParam } from \"@storybook/router\";\n\n/// <reference types=\"cypress\" />\ndeclare global {\n    namespace Cypress {\n        interface Chainable {\n            visitComponentStory(\n                componentName: string,\n                storyName: string\n            ): Chainable<AUTWindow>;\n            visitComponentStoryWithArgs(\n                componentName: string,\n                storyName: string,\n                args: { [key: string]: any }\n            ): Chainable<AUTWindow>;\n        }\n    }\n}\n\nfunction visitComponentStory(componentName: string, storyName: string) {\n    const url = `localhost:6006/iframe.html?id=components-${componentName}--${storyName}`;\n\n    return cy.visit(url);\n}\n\nfunction visitComponentStoryWithArgs(\n    componentName: string,\n    storyName: string,\n    args?: { [key: string]: any }\n) {\n    const url = `localhost:6006/iframe.html?id=components-${componentName}--${storyName}`;\n\n    if (!args) {\n        return cy.visit(url);\n    } else {\n        const urlWithArgs = `${url}&args=${buildArgsParam({}, args)}`;\n        return cy.visit(urlWithArgs);\n    }\n}\n\nCypress.Commands.add(\"visitComponentStory\", visitComponentStory);\nCypress.Commands.add(\n    \"visitComponentStoryWithArgs\",\n    visitComponentStoryWithArgs\n);\n\nexport {};\n",
+            "properties": [],
+            "indexSignatures": [],
+            "kind": 167,
+            "methods": [
+                {
+                    "name": "visitComponentStory",
+                    "args": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Chainable<AUTWindow>",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "visitComponentStoryWithArgs",
+                    "args": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "args",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Chainable<AUTWindow>",
+                    "typeParameters": [],
+                    "line": 55,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "args",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "Chainable-1"
+        },
+        {
+            "name": "InputApiModel",
+            "id": "interface-InputApiModel-0c4e0bf8ca1c657a9652e4e56a5db8946c6d0ac74df118f8fab5d03140c29bb7a2fdfe4a40152e4136ca9df7f53bb07ffc85d37500fc02ec0a6c91ca786b8f0b",
+            "file": "src/app/models/input-api.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { InputType } from './input-type.model';\r\n\r\nexport interface InputApiModel {\r\n  inputType: InputType;\r\n  placeholder?: string;\r\n  value?: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "inputType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "InputType",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "LoginService",
+            "id": "injectable-LoginService-c6c9a46fca6939de163d97b87100ffff2add45fb80c4f6f90f052231c573f97e893af7268767e9dfcf4c5554a9b09608433fef458f9929449fb3f5c8e6ad3503",
+            "file": "src/app/login/services/login.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "login",
+                    "args": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 8,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Observable, throwError } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class LoginService {\n  login(username: string, password: string): Observable<boolean> {\n    return throwError(() => new Error('Not implemented.'));\n  }\n}\n",
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-07c029a08451c79457e8661897c3783297dc887e3a13f9a0ed6c9adbfe7b1e185fb20e868e735160c54acd0a44b306e18616e9b14eda0dfe7bef82fe1609eeed",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ableneo-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'design-systems'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'ableneo-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss']\r\n})\r\nexport class AppComponent {\r\n  title = 'design-systems';\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\r\n<!-- * * * * * * * to get started with your project! * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n<style>\r\n  :host {\r\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',\r\n      'Segoe UI Symbol';\r\n    font-size: 14px;\r\n    color: #333;\r\n    box-sizing: border-box;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n  }\r\n\r\n  h1,\r\n  h2,\r\n  h3,\r\n  h4,\r\n  h5,\r\n  h6 {\r\n    margin: 8px 0;\r\n  }\r\n\r\n  p {\r\n    margin: 0;\r\n  }\r\n\r\n  .spacer {\r\n    flex: 1;\r\n  }\r\n\r\n  .toolbar {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    height: 60px;\r\n    display: flex;\r\n    align-items: center;\r\n    background-color: #1976d2;\r\n    color: white;\r\n    font-weight: 600;\r\n  }\r\n\r\n  .toolbar img {\r\n    margin: 0 16px;\r\n  }\r\n\r\n  .toolbar #twitter-logo {\r\n    height: 40px;\r\n    margin: 0 8px;\r\n  }\r\n\r\n  .toolbar #youtube-logo {\r\n    height: 40px;\r\n    margin: 0 16px;\r\n  }\r\n\r\n  .toolbar #twitter-logo:hover,\r\n  .toolbar #youtube-logo:hover {\r\n    opacity: 0.8;\r\n  }\r\n\r\n  .content {\r\n    display: flex;\r\n    margin: 82px auto 32px;\r\n    padding: 0 16px;\r\n    max-width: 960px;\r\n    flex-direction: column;\r\n    align-items: center;\r\n  }\r\n\r\n  svg.material-icons {\r\n    height: 24px;\r\n    width: auto;\r\n  }\r\n\r\n  svg.material-icons:not(:last-child) {\r\n    margin-right: 8px;\r\n  }\r\n\r\n  .card svg.material-icons path {\r\n    fill: #888;\r\n  }\r\n\r\n  .card-container {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    justify-content: center;\r\n    margin-top: 16px;\r\n  }\r\n\r\n  .card {\r\n    all: unset;\r\n    border-radius: 4px;\r\n    border: 1px solid #eee;\r\n    background-color: #fafafa;\r\n    height: 40px;\r\n    width: 200px;\r\n    margin: 0 8px 16px;\r\n    padding: 16px;\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n    transition: all 0.2s ease-in-out;\r\n    line-height: 24px;\r\n  }\r\n\r\n  .card-container .card:not(:last-child) {\r\n    margin-right: 0;\r\n  }\r\n\r\n  .card.card-small {\r\n    height: 16px;\r\n    width: 168px;\r\n  }\r\n\r\n  .card-container .card:not(.highlight-card) {\r\n    cursor: pointer;\r\n  }\r\n\r\n  .card-container .card:not(.highlight-card):hover {\r\n    transform: translateY(-3px);\r\n    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);\r\n  }\r\n\r\n  .card-container .card:not(.highlight-card):hover .material-icons path {\r\n    fill: rgb(105, 103, 103);\r\n  }\r\n\r\n  .card.highlight-card {\r\n    background-color: #1976d2;\r\n    color: white;\r\n    font-weight: 600;\r\n    border: none;\r\n    width: auto;\r\n    min-width: 30%;\r\n    position: relative;\r\n  }\r\n\r\n  .card.card.highlight-card span {\r\n    margin-left: 60px;\r\n  }\r\n\r\n  svg#rocket {\r\n    width: 80px;\r\n    position: absolute;\r\n    left: -10px;\r\n    top: -24px;\r\n  }\r\n\r\n  svg#rocket-smoke {\r\n    height: calc(100vh - 95px);\r\n    position: absolute;\r\n    top: 10px;\r\n    right: 180px;\r\n    z-index: -10;\r\n  }\r\n\r\n  a,\r\n  a:visited,\r\n  a:hover {\r\n    color: #1976d2;\r\n    text-decoration: none;\r\n  }\r\n\r\n  a:hover {\r\n    color: #125699;\r\n  }\r\n\r\n  .terminal {\r\n    position: relative;\r\n    width: 80%;\r\n    max-width: 600px;\r\n    border-radius: 6px;\r\n    padding-top: 45px;\r\n    margin-top: 8px;\r\n    overflow: hidden;\r\n    background-color: rgb(15, 15, 16);\r\n  }\r\n\r\n  .terminal::before {\r\n    content: '\\2022 \\2022 \\2022';\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    height: 4px;\r\n    background: rgb(58, 58, 58);\r\n    color: #c2c3c4;\r\n    width: 100%;\r\n    font-size: 2rem;\r\n    line-height: 0;\r\n    padding: 14px 0;\r\n    text-indent: 4px;\r\n  }\r\n\r\n  .terminal pre {\r\n    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;\r\n    color: white;\r\n    padding: 0 1rem 1rem;\r\n    margin: 0;\r\n  }\r\n\r\n  .circle-link {\r\n    height: 40px;\r\n    width: 40px;\r\n    border-radius: 40px;\r\n    margin: 8px;\r\n    background-color: white;\r\n    border: 1px solid #eeeeee;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\r\n    transition: 1s ease-out;\r\n  }\r\n\r\n  .circle-link:hover {\r\n    transform: translateY(-0.25rem);\r\n    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);\r\n  }\r\n\r\n  footer {\r\n    margin-top: 8px;\r\n    display: flex;\r\n    align-items: center;\r\n    line-height: 20px;\r\n  }\r\n\r\n  footer a {\r\n    display: flex;\r\n    align-items: center;\r\n  }\r\n\r\n  .github-star-badge {\r\n    color: #24292e;\r\n    display: flex;\r\n    align-items: center;\r\n    font-size: 12px;\r\n    padding: 3px 10px;\r\n    border: 1px solid rgba(27, 31, 35, 0.2);\r\n    border-radius: 3px;\r\n    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);\r\n    margin-left: 4px;\r\n    font-weight: 600;\r\n  }\r\n\r\n  .github-star-badge:hover {\r\n    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);\r\n    border-color: rgba(27, 31, 35, 0.35);\r\n    background-position: -0.5em;\r\n  }\r\n\r\n  .github-star-badge .material-icons {\r\n    height: 16px;\r\n    width: 16px;\r\n    margin-right: 4px;\r\n  }\r\n\r\n  svg#clouds {\r\n    position: fixed;\r\n    bottom: -160px;\r\n    left: -230px;\r\n    z-index: -10;\r\n    width: 1920px;\r\n  }\r\n\r\n  /* Responsive Styles */\r\n  @media screen and (max-width: 767px) {\r\n    .card-container > *:not(.circle-link),\r\n    .terminal {\r\n      width: 100%;\r\n    }\r\n\r\n    .card:not(.highlight-card) {\r\n      height: 16px;\r\n      margin: 8px 0;\r\n    }\r\n\r\n    .card.highlight-card span {\r\n      margin-left: 72px;\r\n    }\r\n\r\n    svg#rocket-smoke {\r\n      right: 120px;\r\n      transform: rotate(-5deg);\r\n    }\r\n  }\r\n\r\n  @media screen and (max-width: 575px) {\r\n    svg#rocket-smoke {\r\n      display: none;\r\n      visibility: hidden;\r\n    }\r\n  }\r\n</style>\r\n\r\n<!-- Toolbar -->\r\n<div class=\"toolbar\" role=\"banner\">\r\n  <img\r\n    width=\"40\"\r\n    alt=\"Angular Logo\"\r\n    src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\"\r\n  />\r\n  <span>Welcome</span>\r\n  <div class=\"spacer\"></div>\r\n  <a aria-label=\"Angular on twitter\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/angular\" title=\"Twitter\">\r\n    <svg id=\"twitter-logo\" height=\"24\" data-name=\"Logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 400\">\r\n      <rect width=\"400\" height=\"400\" fill=\"none\" />\r\n      <path\r\n        d=\"M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23\"\r\n        fill=\"#fff\"\r\n      />\r\n    </svg>\r\n  </a>\r\n  <a aria-label=\"Angular on YouTube\" target=\"_blank\" rel=\"noopener\" href=\"https://youtube.com/angular\" title=\"YouTube\">\r\n    <svg id=\"youtube-logo\" height=\"24\" width=\"24\" data-name=\"Logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"#fff\">\r\n      <path d=\"M0 0h24v24H0V0z\" fill=\"none\" />\r\n      <path\r\n        d=\"M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z\"\r\n      />\r\n    </svg>\r\n  </a>\r\n</div>\r\n\r\n<div class=\"content\" role=\"main\">\r\n  <!-- Highlight Card -->\r\n  <div class=\"card highlight-card card-small\">\r\n    <svg id=\"rocket\" xmlns=\"http://www.w3.org/2000/svg\" width=\"101.678\" height=\"101.678\" viewBox=\"0 0 101.678 101.678\">\r\n      <title>Rocket Ship</title>\r\n      <g id=\"Group_83\" data-name=\"Group 83\" transform=\"translate(-141 -696)\">\r\n        <circle id=\"Ellipse_8\" data-name=\"Ellipse 8\" cx=\"50.839\" cy=\"50.839\" r=\"50.839\" transform=\"translate(141 696)\" fill=\"#dd0031\" />\r\n        <g id=\"Group_47\" data-name=\"Group 47\" transform=\"translate(165.185 720.185)\">\r\n          <path\r\n            id=\"Path_33\"\r\n            data-name=\"Path 33\"\r\n            d=\"M3.4,42.615a3.084,3.084,0,0,0,3.553,3.553,21.419,21.419,0,0,0,12.215-6.107L9.511,30.4A21.419,21.419,0,0,0,3.4,42.615Z\"\r\n            transform=\"translate(0.371 3.363)\"\r\n            fill=\"#fff\"\r\n          />\r\n          <path\r\n            id=\"Path_34\"\r\n            data-name=\"Path 34\"\r\n            d=\"M53.3,3.221A3.09,3.09,0,0,0,50.081,0,48.227,48.227,0,0,0,18.322,13.437c-6-1.666-14.991-1.221-18.322,7.218A33.892,33.892,0,0,1,9.439,25.1l-.333.666a3.013,3.013,0,0,0,.555,3.553L23.985,43.641a2.9,2.9,0,0,0,3.553.555l.666-.333A33.892,33.892,0,0,1,32.647,53.3c8.55-3.664,8.884-12.326,7.218-18.322A48.227,48.227,0,0,0,53.3,3.221ZM34.424,9.772a6.439,6.439,0,1,1,9.106,9.106,6.368,6.368,0,0,1-9.106,0A6.467,6.467,0,0,1,34.424,9.772Z\"\r\n            transform=\"translate(0 0.005)\"\r\n            fill=\"#fff\"\r\n          />\r\n        </g>\r\n      </g>\r\n    </svg>\r\n\r\n    <span>{{ title }} app is running!</span>\r\n\r\n    <svg id=\"rocket-smoke\" xmlns=\"http://www.w3.org/2000/svg\" width=\"516.119\" height=\"1083.632\" viewBox=\"0 0 516.119 1083.632\">\r\n      <title>Rocket Ship Smoke</title>\r\n      <path\r\n        id=\"Path_40\"\r\n        data-name=\"Path 40\"\r\n        d=\"M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z\"\r\n        transform=\"translate(-147.025 -140.939)\"\r\n        fill=\"#f5f5f5\"\r\n      />\r\n    </svg>\r\n  </div>\r\n\r\n  <!-- Resources -->\r\n  <h2>Resources</h2>\r\n  <p>Here are some links to help you get started:</p>\r\n\r\n  <div class=\"card-container\">\r\n    <a class=\"card\" target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/tutorial\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z\" />\r\n      </svg>\r\n      <span>Learn Angular</span>\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z\" />\r\n      </svg>\r\n    </a>\r\n\r\n    <a class=\"card\" target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/cli\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z\" />\r\n      </svg>\r\n      <span>CLI Documentation</span>\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z\" />\r\n      </svg>\r\n    </a>\r\n\r\n    <a class=\"card\" target=\"_blank\" rel=\"noopener\" href=\"https://material.angular.io\">\r\n      <svg xmlns=\"http://www.w3.org/2000/svg\" style=\"margin-right: 8px\" width=\"21.813\" height=\"23.453\" viewBox=\"0 0 179.2 192.7\">\r\n        <path fill=\"#ffa726\" d=\"M89.4 0 0 32l13.5 118.4 75.9 42.3 76-42.3L179.2 32 89.4 0z\" />\r\n        <path fill=\"#fb8c00\" d=\"M89.4 0v192.7l76-42.3L179.2 32 89.4 0z\" />\r\n        <path fill=\"#ffe0b2\" d=\"m102.9 146.3-63.3-30.5 36.3-22.4 63.7 30.6-36.7 22.3z\" />\r\n        <path fill=\"#fff3e0\" d=\"M102.9 122.8 39.6 92.2l36.3-22.3 63.7 30.6-36.7 22.3z\" />\r\n        <path fill=\"#fff\" d=\"M102.9 99.3 39.6 68.7l36.3-22.4 63.7 30.6-36.7 22.4z\" />\r\n      </svg>\r\n      <span>Angular Material</span>\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z\" />\r\n      </svg>\r\n    </a>\r\n\r\n    <a class=\"card\" target=\"_blank\" rel=\"noopener\" href=\"https://blog.angular.io/\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path\r\n          d=\"M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z\"\r\n        />\r\n      </svg>\r\n      <span>Angular Blog</span>\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z\" />\r\n      </svg>\r\n    </a>\r\n\r\n    <a class=\"card\" target=\"_blank\" rel=\"noopener\" href=\"https://angular.io/devtools/\">\r\n      <svg\r\n        class=\"material-icons\"\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        enable-background=\"new 0 0 24 24\"\r\n        height=\"24px\"\r\n        viewBox=\"0 0 24 24\"\r\n        width=\"24px\"\r\n        fill=\"#000000\"\r\n      >\r\n        <g><rect fill=\"none\" height=\"24\" width=\"24\" /></g>\r\n        <g>\r\n          <g>\r\n            <path\r\n              d=\"M14.73,13.31C15.52,12.24,16,10.93,16,9.5C16,5.91,13.09,3,9.5,3S3,5.91,3,9.5C3,13.09,5.91,16,9.5,16 c1.43,0,2.74-0.48,3.81-1.27L19.59,21L21,19.59L14.73,13.31z M9.5,14C7.01,14,5,11.99,5,9.5S7.01,5,9.5,5S14,7.01,14,9.5 S11.99,14,9.5,14z\"\r\n            />\r\n            <polygon points=\"10.29,8.44 9.5,6 8.71,8.44 6.25,8.44 8.26,10.03 7.49,12.5 9.5,10.97 11.51,12.5 10.74,10.03 12.75,8.44\" />\r\n          </g>\r\n        </g>\r\n      </svg>\r\n      <span>Angular DevTools</span>\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z\" />\r\n      </svg>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- Next Steps -->\r\n  <h2>Next Steps</h2>\r\n  <p>What do you want to do next with your app?</p>\r\n\r\n  <input type=\"hidden\" #selection />\r\n\r\n  <div class=\"card-container\">\r\n    <button class=\"card card-small\" (click)=\"selection.value = 'component'\" tabindex=\"0\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\" />\r\n      </svg>\r\n      <span>New Component</span>\r\n    </button>\r\n\r\n    <button class=\"card card-small\" (click)=\"selection.value = 'material'\" tabindex=\"0\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\" />\r\n      </svg>\r\n      <span>Angular Material</span>\r\n    </button>\r\n\r\n    <button class=\"card card-small\" (click)=\"selection.value = 'pwa'\" tabindex=\"0\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\" />\r\n      </svg>\r\n      <span>Add PWA Support</span>\r\n    </button>\r\n\r\n    <button class=\"card card-small\" (click)=\"selection.value = 'dependency'\" tabindex=\"0\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\" />\r\n      </svg>\r\n      <span>Add Dependency</span>\r\n    </button>\r\n\r\n    <button class=\"card card-small\" (click)=\"selection.value = 'test'\" tabindex=\"0\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\" />\r\n      </svg>\r\n      <span>Run and Watch Tests</span>\r\n    </button>\r\n\r\n    <button class=\"card card-small\" (click)=\"selection.value = 'build'\" tabindex=\"0\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\" />\r\n      </svg>\r\n      <span>Build for Production</span>\r\n    </button>\r\n  </div>\r\n\r\n  <!-- Terminal -->\r\n  <div class=\"terminal\" [ngSwitch]=\"selection.value\">\r\n    <pre *ngSwitchDefault>ng generate component xyz</pre>\r\n    <pre *ngSwitchCase=\"'material'\">ng add @angular/material</pre>\r\n    <pre *ngSwitchCase=\"'pwa'\">ng add @angular/pwa</pre>\r\n    <pre *ngSwitchCase=\"'dependency'\">ng add _____</pre>\r\n    <pre *ngSwitchCase=\"'test'\">ng test</pre>\r\n    <pre *ngSwitchCase=\"'build'\">ng build</pre>\r\n  </div>\r\n\r\n  <!-- Links -->\r\n  <div class=\"card-container\">\r\n    <a class=\"circle-link\" title=\"Find a Local Meetup\" href=\"https://www.meetup.com/find/?keywords=angular\" target=\"_blank\" rel=\"noopener\">\r\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24.607\" height=\"23.447\" viewBox=\"0 0 24.607 23.447\">\r\n        <title>Meetup Logo</title>\r\n        <path\r\n          id=\"logo--mSwarm\"\r\n          d=\"M21.221,14.95A4.393,4.393,0,0,1,17.6,19.281a4.452,4.452,0,0,1-.8.069c-.09,0-.125.035-.154.117a2.939,2.939,0,0,1-2.506,2.091,2.868,2.868,0,0,1-2.248-.624.168.168,0,0,0-.245-.005,3.926,3.926,0,0,1-2.589.741,4.015,4.015,0,0,1-3.7-3.347,2.7,2.7,0,0,1-.043-.38c0-.106-.042-.146-.143-.166a3.524,3.524,0,0,1-1.516-.69A3.623,3.623,0,0,1,2.23,14.557a3.66,3.66,0,0,1,1.077-3.085.138.138,0,0,0,.026-.2,3.348,3.348,0,0,1-.451-1.821,3.46,3.46,0,0,1,2.749-3.28.44.44,0,0,0,.355-.281,5.072,5.072,0,0,1,3.863-3,5.028,5.028,0,0,1,3.555.666.31.31,0,0,0,.271.03A4.5,4.5,0,0,1,18.3,4.7a4.4,4.4,0,0,1,1.334,2.751,3.658,3.658,0,0,1,.022.706.131.131,0,0,0,.1.157,2.432,2.432,0,0,1,1.574,1.645,2.464,2.464,0,0,1-.7,2.616c-.065.064-.051.1-.014.166A4.321,4.321,0,0,1,21.221,14.95ZM13.4,14.607a2.09,2.09,0,0,0,1.409,1.982,4.7,4.7,0,0,0,1.275.221,1.807,1.807,0,0,0,.9-.151.542.542,0,0,0,.321-.545.558.558,0,0,0-.359-.534,1.2,1.2,0,0,0-.254-.078c-.262-.047-.526-.086-.787-.138a.674.674,0,0,1-.617-.75,3.394,3.394,0,0,1,.218-1.109c.217-.658.509-1.286.79-1.918a15.609,15.609,0,0,0,.745-1.86,1.95,1.95,0,0,0,.06-1.073,1.286,1.286,0,0,0-1.051-1.033,1.977,1.977,0,0,0-1.521.2.339.339,0,0,1-.446-.042c-.1-.092-.2-.189-.307-.284a1.214,1.214,0,0,0-1.643-.061,7.563,7.563,0,0,1-.614.512A.588.588,0,0,1,10.883,8c-.215-.115-.437-.215-.659-.316a2.153,2.153,0,0,0-.695-.248A2.091,2.091,0,0,0,7.541,8.562a9.915,9.915,0,0,0-.405.986c-.559,1.545-1.015,3.123-1.487,4.7a1.528,1.528,0,0,0,.634,1.777,1.755,1.755,0,0,0,1.5.211,1.35,1.35,0,0,0,.824-.858c.543-1.281,1.032-2.584,1.55-3.875.142-.355.28-.712.432-1.064a.548.548,0,0,1,.851-.24.622.622,0,0,1,.185.539,2.161,2.161,0,0,1-.181.621c-.337.852-.68,1.7-1.018,2.552a2.564,2.564,0,0,0-.173.528.624.624,0,0,0,.333.71,1.073,1.073,0,0,0,.814.034,1.22,1.22,0,0,0,.657-.655q.758-1.488,1.511-2.978.35-.687.709-1.37a1.073,1.073,0,0,1,.357-.434.43.43,0,0,1,.463-.016.373.373,0,0,1,.153.387.7.7,0,0,1-.057.236c-.065.157-.127.316-.2.469-.42.883-.846,1.763-1.262,2.648A2.463,2.463,0,0,0,13.4,14.607Zm5.888,6.508a1.09,1.09,0,0,0-2.179.006,1.09,1.09,0,0,0,2.179-.006ZM1.028,12.139a1.038,1.038,0,1,0,.01-2.075,1.038,1.038,0,0,0-.01,2.075ZM13.782.528a1.027,1.027,0,1,0-.011,2.055A1.027,1.027,0,0,0,13.782.528ZM22.21,6.95a.882.882,0,0,0-1.763.011A.882.882,0,0,0,22.21,6.95ZM4.153,4.439a.785.785,0,1,0,.787-.78A.766.766,0,0,0,4.153,4.439Zm8.221,18.22a.676.676,0,1,0-.677.666A.671.671,0,0,0,12.374,22.658ZM22.872,12.2a.674.674,0,0,0-.665.665.656.656,0,0,0,.655.643.634.634,0,0,0,.655-.644A.654.654,0,0,0,22.872,12.2ZM7.171-.123A.546.546,0,0,0,6.613.43a.553.553,0,1,0,1.106,0A.539.539,0,0,0,7.171-.123ZM24.119,9.234a.507.507,0,0,0-.493.488.494.494,0,0,0,.494.494.48.48,0,0,0,.487-.483A.491.491,0,0,0,24.119,9.234Zm-19.454,9.7a.5.5,0,0,0-.488-.488.491.491,0,0,0-.487.5.483.483,0,0,0,.491.479A.49.49,0,0,0,4.665,18.936Z\"\r\n          transform=\"translate(0 0.123)\"\r\n          fill=\"#f64060\"\r\n        />\r\n      </svg>\r\n    </a>\r\n\r\n    <a class=\"circle-link\" title=\"Join the Conversation on Discord\" href=\"https://discord.gg/angular\" target=\"_blank\" rel=\"noopener\">\r\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 245 240\">\r\n        <title>Discord Logo</title>\r\n        <path\r\n          d=\"M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zM140.9 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z\"\r\n        />\r\n        <path\r\n          d=\"M189.5 20h-134C44.2 20 35 29.2 35 40.6v135.2c0 11.4 9.2 20.6 20.5 20.6h113.4l-5.3-18.5 12.8 11.9 12.1 11.2 21.5 19V40.6c0-11.4-9.2-20.6-20.5-20.6zm-38.6 130.6s-3.6-4.3-6.6-8.1c13.1-3.7 18.1-11.9 18.1-11.9-4.1 2.7-8 4.6-11.5 5.9-5 2.1-9.8 3.5-14.5 4.3-9.6 1.8-18.4 1.3-25.9-.1-5.7-1.1-10.6-2.7-14.7-4.3-2.3-.9-4.8-2-7.3-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.4-.3-1.8-1-2.8-1.7-2.8-1.7s4.8 8 17.5 11.8c-3 3.8-6.7 8.3-6.7 8.3-22.1-.7-30.5-15.2-30.5-15.2 0-32.2 14.4-58.3 14.4-58.3 14.4-10.8 28.1-10.5 28.1-10.5l1 1.2c-18 5.2-26.3 13.1-26.3 13.1s2.2-1.2 5.9-2.9c10.7-4.7 19.2-6 22.7-6.3.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30.1 9.6 0 0-7.9-7.5-24.9-12.7l1.4-1.6s13.7-.3 28.1 10.5c0 0 14.4 26.1 14.4 58.3 0 0-8.5 14.5-30.6 15.2z\"\r\n        />\r\n      </svg>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- Footer -->\r\n  <footer>\r\n    Love Angular?&nbsp;\r\n    <a href=\"https://github.com/angular/angular\" target=\"_blank\" rel=\"noopener\">\r\n      Give our repo a star.\r\n      <div class=\"github-star-badge\">\r\n        <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n          <path d=\"M0 0h24v24H0z\" fill=\"none\" />\r\n          <path d=\"M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z\" />\r\n        </svg>\r\n        Star\r\n      </div>\r\n    </a>\r\n    <a href=\"https://github.com/angular/angular\" target=\"_blank\" rel=\"noopener\">\r\n      <svg class=\"material-icons\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\r\n        <path d=\"M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z\" fill=\"#1976d2\" />\r\n        <path d=\"M0 0h24v24H0z\" fill=\"none\" />\r\n      </svg>\r\n    </a>\r\n  </footer>\r\n\r\n  <svg id=\"clouds\" xmlns=\"http://www.w3.org/2000/svg\" width=\"2611.084\" height=\"485.677\" viewBox=\"0 0 2611.084 485.677\">\r\n    <title>Gray Clouds Background</title>\r\n    <path\r\n      id=\"Path_39\"\r\n      data-name=\"Path 39\"\r\n      d=\"M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z\"\r\n      transform=\"translate(142.69 -634.312)\"\r\n      fill=\"#eee\"\r\n    />\r\n  </svg>\r\n</div>\r\n\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-f5724165d7e758952a8187e52de638cb2d802f0c2bc1d3828a659d1b5a33c0a7934d5aa16d0aa56746fb1f55e8fab306dca0de3c0d85857d6031b0c778e033d5",
+            "file": "src/app/button/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ableneo-button",
+            "styleUrls": [
+                "./button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./button.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "'Button Label'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'primary'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "\"primary\" | \"secondary\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "buttonClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'ableneo-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent {\n  @Input() label: string = 'Button Label';\n  @Input() type: 'primary' | 'secondary' = 'primary';\n  @Output() buttonClick = new EventEmitter<void>();\n\n  protected getIconColor() {\n    return this.type == 'primary' ? 'white' : 'black';\n  }\n\n  protected onClick(): void {\n    this.buttonClick.emit();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '../../styles/colors';\r\n\r\n:host {\r\n  display: block;\r\n}\r\n\r\nbutton {\r\n  box-sizing: border-box;\r\n  border-radius: 5px;\r\n  box-shadow: inset 0 2px 0 rgba(202, 230, 255, 0.15);\r\n  font-style: normal;\r\n  font-weight: 600;\r\n  font-size: 13px;\r\n  line-height: 16px;\r\n  display: flex;\r\n  align-items: center;\r\n  text-align: center;\r\n  padding: 11px 16px;\r\n  cursor: pointer;\r\n\r\n  &.primary {\r\n    background: colors.$turquoise;\r\n    border: 1px solid colors.$quetzal-blue;\r\n    color: colors.$text;\r\n  }\r\n\r\n  &.secondary {\r\n    border: 1px solid colors.$turquoise;\r\n    color: colors.$dark-text;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<button [attr.class]=\"type\" (click)=\"onClick()\">\n  <ableneo-icon [iconName]=\"icon\" [iconColor]=\"getIconColor()\" *ngIf=\"icon\"></ableneo-icon>\n  {{ label }}\n</button>\n"
+        },
+        {
+            "name": "CardComponent",
+            "id": "component-CardComponent-8b6ee2acd19a5a15bb3af263ddd2ac2e865d43ce9cd4f8341d010376f2bd4e2d5e0d72fbd7d4c62d4d0224602c2fb9ae20a89e8fd21fb148e6e094e4c946b5e9",
+            "file": "src/app/card/card.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ableneo-card",
+            "styleUrls": [
+                "./card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "header",
+                    "defaultValue": "'Default header'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, Input} from '@angular/core';\n\n@Component({\n  selector: 'ableneo-card',\n  templateUrl: './card.component.html',\n  styleUrls: ['./card.component.scss']\n})\nexport class CardComponent {\n  @Input() header: string = 'Default header';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '../../styles/colors';\r\n@use '../../styles/effects';\r\n@use 'src/styles/typography';\r\n\r\n:host {\r\n  background: white;\r\n  border: 1px solid colors.$quetzal-blue;\r\n  border-radius: 10px;\r\n  color: black;\r\n  display: inline-flex;\r\n  flex-direction: column;\r\n  padding: 24px;\r\n  min-width: 300px;\r\n\r\n  @include effects.elevated-shadow();\r\n  @include typography.body-typo();\r\n}\r\n\r\nh1 {\r\n  margin-top: 8px;\r\n  @include typography.header-typo();\r\n}\r\n",
+                    "styleUrl": "./card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<h1>{{ header }}</h1>\n<ng-content></ng-content>\n"
+        },
+        {
+            "name": "FormElementComponent",
+            "id": "component-FormElementComponent-6f4116c549c907f52f882d4779f66d84a96e6704368cd1e19f40448c129cf7652e9ae61f89d3e8a91efded1135989b19c741453b8b98a6801efea9672d410453",
+            "file": "src/app/form-element/form-element.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ableneo-form-element",
+            "styleUrls": [
+                "./form-element.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./form-element.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "inputType",
+                    "defaultValue": "InputType.text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "InputType",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Input Label'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "input",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "InputComponent",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "InputComponent, {static: false}"
+                        }
+                    ]
+                },
+                {
+                    "name": "uuid",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ViewChild } from '@angular/core';\nimport { InputComponent } from '../input/input.component';\nimport { InputApiModel } from '../models/input-api.model';\nimport { InputType } from '../models/input-type.model';\n\n@Component({\n  selector: 'ableneo-form-element',\n  templateUrl: './form-element.component.html',\n  styleUrls: ['./form-element.component.scss']\n})\nexport class FormElementComponent implements InputApiModel {\n  uuid: string;\n\n  @Input() inputType: InputType = InputType.text;\n  @Input() placeholder?: string;\n  @Input() value?: string;\n  @Input() label = 'Input Label';\n  @ViewChild(InputComponent, { static: false }) input!: InputComponent;\n\n  constructor() {\n    this.uuid = crypto.randomUUID();\n  }\n\n  get text(): string {\n    return this.input.text;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '../../styles/colors';\r\n@use 'src/styles/typography';\r\n\r\n:host {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  label {\r\n    @include typography.body-typo();\r\n\r\n    cursor: pointer;\r\n    padding-bottom: 10px;\r\n  }\r\n\r\n  &:hover,\r\n  &:focus {\r\n    label {\r\n      color: colors.$text-hover;\r\n    }\r\n  }\r\n}\r\n",
+                    "styleUrl": "./form-element.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 18
+            },
+            "implements": [
+                "InputApiModel"
+            ],
+            "accessors": {
+                "text": {
+                    "name": "text",
+                    "getSignature": {
+                        "name": "text",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 24
+                    }
+                }
+            },
+            "templateData": "<label [for]=\"uuid\">{{ label }}</label>\n<ableneo-input [id]=\"uuid\" [placeholder]=\"placeholder\" [inputType]=\"inputType\" [value]=\"value\"></ableneo-input>\n"
+        },
+        {
+            "name": "FormLayoutComponent",
+            "id": "component-FormLayoutComponent-2eff06e9e4d6ac31f5dd2e150c4148c1369b0bea0d8629012ed6c5205168c0d856a4f92485164c1da4a8575cda9ecd98b94bf61d95326b1847859ec30ebfadaa",
+            "file": "src/app/form-layout/form-layout.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ableneo-form-layout",
+            "styleUrls": [
+                "./form-layout.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./form-layout.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "columns",
+                    "defaultValue": "1",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "heading",
+                    "defaultValue": "'Form Heading'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'ableneo-form-layout',\n  templateUrl: './form-layout.component.html',\n  styleUrls: ['./form-layout.component.scss']\n})\nexport class FormLayoutComponent {\n  @Input() columns = 1;\n  @Input() heading = 'Form Heading';\n\n  get templateColumnsString() {\n    return `repeat(${this.columns}, 1fr)`;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".grid-layout {\r\n  display: grid;\r\n}\r\n",
+                    "styleUrl": "./form-layout.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "templateColumnsString": {
+                    "name": "templateColumnsString",
+                    "getSignature": {
+                        "name": "templateColumnsString",
+                        "type": "",
+                        "returnType": "",
+                        "line": 12
+                    }
+                }
+            },
+            "templateData": "<legend>{{ heading }}</legend>\n<div class=\"grid-layout\" [ngStyle]=\"{ 'grid-template-columns': templateColumnsString }\">\n  <ng-content></ng-content>\n</div>\n"
+        },
+        {
+            "name": "IconComponent",
+            "id": "component-IconComponent-d8a47b6aea1bb5ce10fe565d015c38d89ab290e1466c64c46d4a3cde33f249a308d2fb8f08616fcf99b6b8870f9b00ca99ae2685130caebe522fca6f950ff140",
+            "file": "src/app/icon/icon.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ableneo-icon",
+            "styleUrls": [
+                "./icon.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./icon.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "iconColor",
+                    "defaultValue": "'blue'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconName",
+                    "defaultValue": "'fingerprint'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "IconName",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { IconName } from '@fortawesome/free-brands-svg-icons';\n\n@Component({\n  selector: 'ableneo-icon',\n  templateUrl: './icon.component.html',\n  styleUrls: ['./icon.component.scss']\n})\nexport class IconComponent implements OnInit {\n  @Input() public iconName: IconName = 'fingerprint';\n  @Input() public iconColor: string = 'blue';\n  constructor() {}\n\n  ngOnInit(): void {}\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./icon.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 11
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<fa-icon [icon]=\"iconName\" [ngStyle]=\"{ color: iconColor }\"></fa-icon>\n"
+        },
+        {
+            "name": "InputComponent",
+            "id": "component-InputComponent-abf4563467f2c456f2cb4fd5972de09bcff7cdf7f3e7c4d6a1665142742d9cae621630184743c98d8ee8403bc5b95da385d98faa86665f7dfec73ea5481543aa",
+            "file": "src/app/input/input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ableneo-input",
+            "styleUrls": [
+                "./input.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./input.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "inputType",
+                    "defaultValue": "InputType.text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "InputType",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string | undefined",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ElementRef, Input, ViewChild } from '@angular/core';\nimport { InputApiModel } from '../models/input-api.model';\nimport { InputType } from '../models/input-type.model';\n\n@Component({\n  selector: 'ableneo-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss']\n})\nexport class InputComponent implements InputApiModel {\n  @Input() inputType: InputType = InputType.text;\n  @Input() placeholder: string | undefined;\n  @Input() value: string | undefined;\n  @Input() id?: string;\n  @ViewChild('input', { static: false }) protected input!: ElementRef<HTMLInputElement>;\n\n  get text(): string {\n    return this.input.nativeElement.value;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '../../styles/colors';\r\n@use '../../styles/effects';\r\n\r\n:host {\r\n  display: block;\r\n}\r\n\r\ninput {\r\n  width: 320px;\r\n  height: 40px;\r\n  border: 1px solid colors.$turquoise;\r\n  border-radius: 10px;\r\n  background: white;\r\n  box-sizing: border-box;\r\n  padding: 12px;\r\n\r\n  &:hover {\r\n    @include effects.hover-shadow();\r\n  }\r\n\r\n  &:focus {\r\n    @include effects.hover-shadow();\r\n    border: 1px solid colors.$text-hover;\r\n  }\r\n\r\n  &:focus-visible {\r\n    outline: none;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./input.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "implements": [
+                "InputApiModel"
+            ],
+            "accessors": {
+                "text": {
+                    "name": "text",
+                    "getSignature": {
+                        "name": "text",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 17
+                    }
+                }
+            },
+            "templateData": "<input [type]=\"inputType\" [id]=\"id\" [placeholder]=\"placeholder\" [value]=\"value\" #input />\n"
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-b25328b45a4d849c76634f27c39dfb76a5be7cc212f8b8cb4d1059c7fbf9c891143be3f1231ab0282663754aa0eeb65cd14bf900c301a0fcc427ab352921a8f9",
+            "file": "src/app/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ableneo-login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "pw",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormElementComponent",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'pw', {static: false}"
+                        }
+                    ]
+                },
+                {
+                    "name": "user",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormElementComponent",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'user', {static: false}"
+                        }
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onSubmitButtonClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ViewChild } from '@angular/core';\nimport { FormElementComponent } from '../form-element/form-element.component';\nimport { LoginService } from './services/login.service';\n\n@Component({\n  selector: 'ableneo-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent {\n  @ViewChild('user', { static: false }) user!: FormElementComponent;\n  @ViewChild('pw', { static: false }) pw!: FormElementComponent;\n\n  constructor(readonly loginService: LoginService) {}\n\n  onSubmitButtonClick(): void {\n    this.loginService.login(this.user.text, this.pw.text).subscribe(console.log);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ":host {\r\n  display: block;\r\n}\r\n\r\nableneo-button {\r\n  margin-left: auto;\r\n  margin-top: 30px;\r\n}\r\n\r\nableneo-form-element {\r\n  margin-bottom: 10px;\r\n}\r\n",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "loginService",
+                        "type": "LoginService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "loginService",
+                        "type": "LoginService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<ableneo-card header=\"Login\">\n  <ableneo-form-layout [heading]=\"undefined\">\n    <ableneo-form-element label=\"Email\" placeholder=\"john.doe@gmail.com\" value=\"\" #user></ableneo-form-element>\n    <ableneo-form-element label=\"Password\" inputType=\"password\" placeholder=\"********\" value=\"\" #pw></ableneo-form-element>\n  </ableneo-form-layout>\n  <ableneo-button label=\"Submit\" (buttonClick)=\"onSubmitButtonClick()\"></ableneo-button>\n</ableneo-card>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-3646b8516ec6df02795afb4333a3d7fc3ddd3cc9bbb12f134c3dedbe114ecd6a4aea8392a1e5165b8451748f39c08fddf6a631143a223302622b16f804db4286",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome';\r\n\r\n@NgModule({\r\n  declarations: [AppComponent],\r\n  imports: [BrowserModule, FontAwesomeModule],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule {}\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "ButtonModule",
+            "id": "module-ButtonModule-950b42c66135fa81eeeff5223b9202773c5f2e4ec730218dca4014596d5ee9d0ff004c81e2a28137fc958bcb1da884c8a95fddd57cb945e683214c21f1beb226",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/button/button.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { IconModule } from '../icon/icon.module';\nimport { ButtonComponent } from './button.component';\n\n@NgModule({\n  declarations: [ButtonComponent],\n  imports: [CommonModule, IconModule],\n  exports: [ButtonComponent]\n})\nexport class ButtonModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "IconModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "CardModule",
+            "id": "module-CardModule-9fb85f4126fd5f29db6e1d064daa354bc94ba052b30187acfdfdb60019cb4658b690844f994fe14bb070b7090d77f2a7df7dc6d4ce3b8c1b1fce4bf077ec26aa",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/card/card.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { CardComponent } from './card.component';\n\n@NgModule({\n  declarations: [CardComponent],\n  exports: [CardComponent],\n  imports: [CommonModule]\n})\nexport class CardModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CardComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "CardComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "FormElementModule",
+            "id": "module-FormElementModule-4f462750e320dc93bcf99f34384bcc37e9cfe921a7c66a1cad848b5f54244533f8dab06f5e51cb46fec3510bd7335de15bef81bb931b79d119e109f586df03df",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/form-element/form-element.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { InputModule } from '../input/input.module';\nimport { FormElementComponent } from './form-element.component';\n\n@NgModule({\n  declarations: [FormElementComponent],\n  imports: [CommonModule, InputModule],\n  exports: [FormElementComponent]\n})\nexport class FormElementModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "FormElementComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "InputModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "FormElementComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "FormLayoutModule",
+            "id": "module-FormLayoutModule-cc39afe2825e4794fa537ad061c7b2f95bf96e3d76a383968003c7622d4b13541a9561beba6ad3a2e49054fde822ac7c428b7fe0d11dc2fe5105a599152cfbe8",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/form-layout/form-layout.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { FormLayoutComponent } from './form-layout.component';\n\n@NgModule({\n  declarations: [FormLayoutComponent],\n  imports: [CommonModule],\n  exports: [FormLayoutComponent]\n})\nexport class FormLayoutModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "FormLayoutComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "FormLayoutComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "IconModule",
+            "id": "module-IconModule-94eceb2d165456b46fb7762a338ddbcc15717b98a669aeef75d5f00693378ec7f685c950dd2214dfc1c1d2f990b905483d772a52b1bbeb8d37e5377a9c15832e",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/icon/icon.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';\nimport { far } from '@fortawesome/free-regular-svg-icons';\n\nimport { fas } from '@fortawesome/free-solid-svg-icons';\nimport { IconComponent } from './icon.component';\n\n@NgModule({\n  declarations: [IconComponent],\n  imports: [CommonModule, FontAwesomeModule],\n  exports: [IconComponent]\n})\nexport class IconModule {\n  constructor(library: FaIconLibrary) {\n    library.addIconPacks(fas, far);\n  }\n}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "InputModule",
+            "id": "module-InputModule-7eaede5a470e5a51530aa851fcd26033a7dcb78d3e630625b9727fb6ccc5694c7e55d3a656ef2e7998328f0b1e02a80d2be5bceb9bf6d9a1322a45d0ccdbe952",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/input/input.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { InputComponent } from './input.component';\n\n@NgModule({\n  declarations: [InputComponent],\n  exports: [InputComponent],\n  imports: [CommonModule]\n})\nexport class InputModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "InputComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "InputComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LoginModule",
+            "id": "module-LoginModule-eabfd7a00e5bf9214145be5792498ca0cc3455dcdcfc119f26fa915268ed0fb2cccab85435abd6c4bb5f3facc1e10e249942396fa7e8cb18d85239b357b4fcac",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/login/login.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { ButtonModule } from '../button/button.module';\nimport { CardModule } from '../card/card.module';\nimport { FormElementModule } from '../form-element/form-element.module';\nimport { FormLayoutModule } from '../form-layout/form-layout.module';\nimport { LoginComponent } from './login.component';\n\n@NgModule({\n  declarations: [LoginComponent],\n  imports: [CommonModule, CardModule, FormLayoutModule, FormElementModule, ButtonModule],\n  exports: [LoginComponent]\n})\nexport class LoginModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "ButtonModule"
+                        },
+                        {
+                            "name": "CardModule"
+                        },
+                        {
+                            "name": "FormElementModule"
+                        },
+                        {
+                            "name": "FormLayoutModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "Button",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Card",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: true\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: false\r\n}"
+            },
+            {
+                "name": "FormElement",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/form-element/form-element.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "FormLayout",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/form-layout/form-layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Icon",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/icon/icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Input",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/input/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Login",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/login/login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "args => ({\n  props: args\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CardComponent>",
+                "defaultValue": "args => ({\n  props: args,\n  template: `\n    <ableneo-card>\n     Some text content Some text content Some text content Some text content Some text content Some text content Some text content Some text content\n    </ableneo-card>\n  `\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/form-element/form-element.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormElementComponent>",
+                "defaultValue": "args => ({\n  props: args\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/form-layout/form-layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<>",
+                "defaultValue": "args => ({\n  props: { args },\n  template: `\n      <ableneo-form-layout [columns]=\"args.columns\" [heading]=\"args.heading\">\n        <ableneo-form-element [label]=\"args.userInput.label\"\n                          [placeholder]=\"args.userInput.placeholder\"\n                          [value]=\"args.userInput.value\"\n                          [inputType]=\"args.userInput.inputType\"></ableneo-form-element>\n        <ableneo-form-element [label]=\"args.passwordInput.label\"\n                          [placeholder]=\"args.passwordInput.placeholder\"\n                          [value]=\"args.passwordInput.value\"\n                          [inputType]=\"args.passwordInput.inputType\"></ableneo-form-element>\n      </ableneo-form-layout>\n  `\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/input/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<InputComponent>",
+                "defaultValue": "args => ({\n  props: args\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/icon/icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "args => ({\n  props: args\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/login/login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LoginComponent>",
+                "defaultValue": "args => ({\n  props: args\n})"
+            }
+        ],
+        "functions": [
+            {
+                "name": "visitComponentStory",
+                "file": "cypress/support/commands.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "componentName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "storyName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "componentName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "storyName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "visitComponentStoryWithArgs",
+                "file": "cypress/support/commands.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "componentName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "storyName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "args",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "componentName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "storyName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "args",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true,
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
+        "typealiases": [
+            {
+                "name": "FormLayoutProps",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/form-layout/form-layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 181
+            }
+        ],
+        "enumerations": [
+            {
+                "name": "InputType",
+                "childs": [
+                    {
+                        "name": "text",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "text"
+                    },
+                    {
+                        "name": "number",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "number"
+                    },
+                    {
+                        "name": "password",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "password"
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "src/app/models/input-type.model.ts"
+            }
+        ],
+        "groupedVariables": {
+            "src/app/button/button.stories.ts": [
+                {
+                    "name": "Button",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "args => ({\n  props: args\n})"
+                }
+            ],
+            "src/app/card/card.stories.ts": [
+                {
+                    "name": "Card",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<CardComponent>",
+                    "defaultValue": "args => ({\n  props: args,\n  template: `\n    <ableneo-card>\n     Some text content Some text content Some text content Some text content Some text content Some text content Some text content Some text content\n    </ableneo-card>\n  `\n})"
+                }
+            ],
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: true\r\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: false\r\n}"
+                }
+            ],
+            "src/app/form-element/form-element.stories.ts": [
+                {
+                    "name": "FormElement",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/form-element/form-element.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/form-element/form-element.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormElementComponent>",
+                    "defaultValue": "args => ({\n  props: args\n})"
+                }
+            ],
+            "src/app/form-layout/form-layout.stories.ts": [
+                {
+                    "name": "FormLayout",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/form-layout/form-layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/form-layout/form-layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<>",
+                    "defaultValue": "args => ({\n  props: { args },\n  template: `\n      <ableneo-form-layout [columns]=\"args.columns\" [heading]=\"args.heading\">\n        <ableneo-form-element [label]=\"args.userInput.label\"\n                          [placeholder]=\"args.userInput.placeholder\"\n                          [value]=\"args.userInput.value\"\n                          [inputType]=\"args.userInput.inputType\"></ableneo-form-element>\n        <ableneo-form-element [label]=\"args.passwordInput.label\"\n                          [placeholder]=\"args.passwordInput.placeholder\"\n                          [value]=\"args.passwordInput.value\"\n                          [inputType]=\"args.passwordInput.inputType\"></ableneo-form-element>\n      </ableneo-form-layout>\n  `\n})"
+                }
+            ],
+            "src/app/icon/icon.stories.ts": [
+                {
+                    "name": "Icon",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/icon/icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/icon/icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<IconComponent>",
+                    "defaultValue": "args => ({\n  props: args\n})"
+                }
+            ],
+            "src/app/input/input.stories.ts": [
+                {
+                    "name": "Input",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/input/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/input/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<InputComponent>",
+                    "defaultValue": "args => ({\n  props: args\n})"
+                }
+            ],
+            "src/app/login/login.stories.ts": [
+                {
+                    "name": "Login",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/login/login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/login/login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LoginComponent>",
+                    "defaultValue": "args => ({\n  props: args\n})"
+                }
+            ]
+        },
+        "groupedFunctions": {
+            "cypress/support/commands.ts": [
+                {
+                    "name": "visitComponentStory",
+                    "file": "cypress/support/commands.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "visitComponentStoryWithArgs",
+                    "file": "cypress/support/commands.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "args",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "args",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "groupedEnumerations": {
+            "src/app/models/input-type.model.ts": [
+                {
+                    "name": "InputType",
+                    "childs": [
+                        {
+                            "name": "text",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "text"
+                        },
+                        {
+                            "name": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "number"
+                        },
+                        {
+                            "name": "password",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "password"
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "src/app/models/input-type.model.ts"
+                }
+            ]
+        },
+        "groupedTypeAliases": {
+            "src/app/form-layout/form-layout.stories.ts": [
+                {
+                    "name": "FormLayoutProps",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/form-layout/form-layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 181
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "cypress/support/commands.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Chainable",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "cypress/support/commands.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "visitComponentStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "cypress/support/commands.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "visitComponentStoryWithArgs",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "cypress/support/component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Chainable",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/button/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Button",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/card/card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/card/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Card",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/card/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/form-element/form-element.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FormElementComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/form-element/form-element.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FormElement",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/form-element/form-element.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/form-layout/form-layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FormLayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/form-layout/form-layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FormLayout",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/form-layout/form-layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/icon/icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/icon/icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Icon",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/icon/icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/input/input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "InputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/input/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Input",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/input/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/login/login.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/login/login.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Login",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/login/login.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/login/services/login.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "LoginService",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/models/input-api.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "InputApiModel",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
